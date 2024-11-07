@@ -2,6 +2,9 @@
 	"tasks": {
 		"dev": "deno run --watch main.ts"
 	},
+	"imports": {
+		"oak": "jsr:@oak/oak"
+	},
 	"fmt": {
 		"useTabs": true,
 		"singleQuote": true,

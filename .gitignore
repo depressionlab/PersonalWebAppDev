@@ -4,6 +4,9 @@
 ### Deno ###
 /.idea/
 /.vscode/
+.env
+generated
+prisma/dev.db
 
 /node_modules
 
