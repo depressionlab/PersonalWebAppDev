@@ -3,7 +3,9 @@
 		"dev": "deno run --watch main.ts"
 	},
 	"imports": {
-		"oak": "jsr:@oak/oak"
+		"oak": "jsr:@oak/oak",
+		"oak/commons": "jsr:@oak/commons",
+		"@std/fmt": "jsr:@std/fmt"
 	},
 	"fmt": {
 		"useTabs": true,
