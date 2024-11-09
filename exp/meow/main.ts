@@ -7,7 +7,9 @@ import { KeyStack } from 'oak/commons/keystack';
 import { CookiePlugin } from './plugin/cookie.plugin.ts';
 import { Context } from 'oak/context';
 
-export interface AppState { responseTime: number }
+export interface AppState {
+	responseTime: number;
+}
 export type AppContext = Context<AppState>;
 const keyStack = new KeyStack([':33333eewewewew', 'meoweweew', 'eqwjejsdjfsgjfs']);
 const defaultAppState: AppState = { responseTime: Date.now() };
@@ -22,7 +24,7 @@ app.use(new ErrorPlugin());
 app.use(new HeadersPlugin());
 app.use(new LoggerPlugin());
 app.use(new CookiePlugin());
-app.addEventListener('listen', e => {
+app.addEventListener('listen', (e) => {
 	console.log(`${bold('started listening on')} ${yellow(`${e.hostname}:${e.port}`)}`);
 	console.log(bold(`   using HTTP server: ${yellow(e.serverType)}`));
 });

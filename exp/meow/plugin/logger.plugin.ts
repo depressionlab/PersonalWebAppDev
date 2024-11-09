@@ -7,5 +7,5 @@ export class LoggerPlugin implements MiddlewareObject<AppState> {
 		const responseTime = String(context.response.headers.get('X-Response-Time'));
 		await next();
 		console.log(`${green(context.request.method)} ${cyan(context.request.url.pathname)} - ${bold(responseTime)}`);
-	};
-};
+	}
+}

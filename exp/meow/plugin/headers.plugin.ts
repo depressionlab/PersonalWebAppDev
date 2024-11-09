@@ -7,5 +7,5 @@ export class HeadersPlugin implements MiddlewareObject<AppState> {
 		await next();
 		const ms = Date.now() - start;
 		context.response.headers.set('X-Response-Time', `${ms}ms`);
-	};
-};
+	}
+}

@@ -28,5 +28,5 @@ export class ErrorPlugin implements MiddlewareObject<AppState> {
 				console.log(e.stack);
 			}
 		}
-	};
-};
+	}
+}
