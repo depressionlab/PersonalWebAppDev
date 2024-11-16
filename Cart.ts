@@ -26,13 +26,13 @@ const filterBy = (fn: (value: CartItem) => unknown) => (cart: CartItem[]) => car
 // Return a function that filters a given cart by
 // whether the item's price is over the given threshold
 // Hint: call filterBy
-const filterByPrice = (threshold: number) => (cart: CartItem[]) => filterBy(v => v.price > threshold)(cart);
+const filterByPrice = (threshold: number) => (cart: CartItem[]) => filterBy((v) => v.price > threshold)(cart);
 
 // 4.
 // Return a function that filters a given cart by
 // whether the item has the specified tag
 // Hint: call filterBy
-const filterByTag = (tag: string) => (cart: CartItem[]) => filterBy(v => (new Set(v.tags)).has(tag))(cart);
+const filterByTag = (tag: string) => (cart: CartItem[]) => filterBy((v) => (new Set(v.tags)).has(tag))(cart);
 
 // 5.
 // Return a cart in which the cmp is applied to each item
@@ -42,15 +42,16 @@ const applyDiscount = (cmp: (value: CartItem) => CartItem) => (cart: CartItem[])
 // Return a function which applies
 // the percent discount to each item in the given cart
 // Hint: call applyDiscount
-const applyPercentDiscount = (percent: number) => applyDiscount(v => {
-    v.price = v.price * ((100 - percent)/100);
-    return v;
-});
+const applyPercentDiscount = (percent: number) =>
+	applyDiscount((v) => {
+		v.price = v.price * ((100 - percent) / 100);
+		return v;
+	});
 
 // 7.
 // Return a list of values for the specified attribute
 // For example, getValues("price")(exampleCart) >>> [119.44, 347.29, ... ]
-const getValues = <Attribute extends keyof CartItem>(attribute: Attribute) => (cart: CartItem[]) => cart.map(c => c[attribute]);
+const getValues = <Attribute extends keyof CartItem>(attribute: Attribute) => (cart: CartItem[]) => cart.map((c) => c[attribute]);
 
 // 8.
 // Return a cart that is sorted using a compare function
@@ -323,7 +324,7 @@ const exampleCart: CartItem[] = [{
 }];
 
 console.log(getTotalPrice(exampleCart));
-console.log(filterBy(v => v)(exampleCart));
+console.log(filterBy((v) => v)(exampleCart));
 console.log(filterByPrice(132)(exampleCart));
 console.log(filterByTag('dolor'));
 console.log(applyPercentDiscount(12)(exampleCart));

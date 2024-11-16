@@ -5,7 +5,9 @@
 	"imports": {
 		"oak": "jsr:@oak/oak",
 		"oak/commons": "jsr:@oak/commons",
-		"@std/fmt": "jsr:@std/fmt"
+		"@std/fmt": "jsr:@std/fmt",
+		"@std/datetime": "jsr:@std/datetime",
+		"@db/sqlite": "jsr:@db/sqlite"
 	},
 	"fmt": {
 		"useTabs": true,

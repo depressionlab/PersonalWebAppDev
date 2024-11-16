@@ -1,9 +1,9 @@
-import { HttpError, Status } from 'oak';
-import { MiddlewareObject, Next } from 'oak/middleware';
-import { AppContext, AppState } from '../main.ts';
+import { Status } from 'oak/commons/status';
+import { HttpError } from 'oak/commons/http_errors';
+import { AppContext, AppMiddleware, Next } from '../app.types.ts';
 import { bold, red } from '@std/fmt/colors';
 
-export class ErrorPlugin implements MiddlewareObject<AppState> {
+export class ErrorPlugin implements AppMiddleware {
 	async handleRequest(context: AppContext, next: Next) {
 		try {
 			await next();
