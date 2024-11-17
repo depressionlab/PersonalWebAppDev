@@ -1,6 +1,6 @@
 import { Status } from 'oak/commons/status';
 import { HttpError } from 'oak/commons/http_errors';
-import { AppContext, AppMiddleware, Next } from '../app.types.ts';
+import { AppContext, AppMiddleware, Next } from '../utils/types.ts';
 import { bold, red } from '@std/fmt/colors';
 
 export class ErrorPlugin implements AppMiddleware {

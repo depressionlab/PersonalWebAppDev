@@ -1,4 +1,3 @@
-export const X_RESPONSE_TIME = 'X-Response-Time';
 export const USER_AGENT = 'User-Agent';
 
 export const PORT = 8369;
