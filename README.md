@@ -1,4 +1,4 @@
 # to start server
 
-download deno!
-`deno -A server/main.ts`
+1. download deno!
+2. `deno run serve`

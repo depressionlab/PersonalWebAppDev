@@ -1,6 +1,7 @@
 {
 	"tasks": {
-		"dev": "deno run --watch main.ts"
+		"dev": "deno run --no-clear-screen --watch main.ts",
+		"serve": "deno run -A --no-clear-screen --check --watch ./server/main.ts"
 	},
 	"imports": {
 		"oak": "jsr:@oak/oak",
