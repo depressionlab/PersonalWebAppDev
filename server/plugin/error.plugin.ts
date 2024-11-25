@@ -1,10 +1,11 @@
 import { Status } from 'oak/commons/status';
 import { HttpError } from 'oak/commons/http_errors';
-import { AppContext, AppMiddleware, Next } from '../utils/types.ts';
 import { bold, red } from '@std/fmt/colors';
+import { RouterMiddleware } from 'oak/router';
+import { Middleware } from 'oak/middleware';
 
-export class ErrorPlugin implements AppMiddleware {
-	async handleRequest(context: AppContext, next: Next) {
+export const errorMiddleware = <T extends RouterMiddleware<string> | Middleware = Middleware>(): T => {
+	const core: RouterMiddleware<string> = async (context, next) => {
 		try {
 			await next();
 		} catch (e) {
@@ -28,5 +29,9 @@ export class ErrorPlugin implements AppMiddleware {
 				console.log(e.stack);
 			}
 		}
-	}
-}
+	};
+
+	return core as T;
+};
+
+export default { errorMiddleware };

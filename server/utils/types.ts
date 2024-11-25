@@ -12,3 +12,5 @@ export type AppContext = Context<AppState>;
 export type AppMiddleware = MiddlewareObject<AppState>;
 export type App = Application<AppState>;
 export type AppRouter = Router<AppState>;
+
+export type ArraysData = { array: number[] };

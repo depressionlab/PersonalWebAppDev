@@ -7,6 +7,7 @@
 .env
 generated
 prisma/dev.db
+prisma/dev.db*
 
 /node_modules
 

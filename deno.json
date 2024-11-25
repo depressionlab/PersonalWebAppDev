@@ -1,19 +1,33 @@
 {
 	"tasks": {
 		"dev": "deno run --no-clear-screen --watch main.ts",
-		"serve": "deno run -A --no-clear-screen --check --watch ./server/main.ts"
+		"start": "deno run -A --no-clear-screen --check --watch ./server/main.ts",
+		"prisma": "deno run -A npm:prisma",
+		"prisma:gen": "deno task prisma generate --schema ./prisma/schema.prisma && deno task prisma:patch",
+		"prisma:migrate": "deno task prisma migrate dev --schema ./prisma/schema.prisma && deno task prisma:patch",
+		"prisma:patch": "deno run -A prisma/patch.ts",
+		"test:integration": "deno test --allow-net --filter=integration"
 	},
 	"imports": {
 		"oak": "jsr:@oak/oak",
 		"oak/commons": "jsr:@oak/commons",
+		"@prisma/client": "npm:@prisma/client",
+		"prisma": "npm:prisma",
+		"djwt": "jsr:@zaubrik/djwt",
 		"@std/fmt": "jsr:@std/fmt",
 		"@std/datetime": "jsr:@std/datetime",
-		"@db/sqlite": "jsr:@db/sqlite"
+		"@std/expect": "jsr:@std/expect",
+		"@std/assert": "jsr:@std/assert",
+		"@std/dotenv": "jsr:@std/dotenv",
+		"@std/testing": "jsr:@std/testing",
+		"@std/uuid": "jsr:@std/uuid",
+		"@std/path": "jsr:@std/path"
 	},
 	"fmt": {
 		"useTabs": true,
 		"singleQuote": true,
 		"semiColons": true,
 		"lineWidth": 300
-	}
+	},
+	"nodeModulesDir": "auto"
 }
