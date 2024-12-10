@@ -1,9 +1,40 @@
 import { Router } from 'oak/router';
 import { AppRouter, ArraysData } from '../utils/types.ts';
+import { Database } from '@db/sqlite';
 // import { prisma } from '../../prisma/client.ts';
 
 export function registerRouter(): AppRouter {
 	const router: AppRouter = new Router();
+	const db = new Database('dev.db');
+	db.exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER NOT NULL)');
+
+	router.get('/users', (context) => {
+		const users = db.prepare('SELECT * from users').all();
+		context.response.body = users;
+	});
+
+	router.post('/users', async (context) => {
+		const { name, age } = await context.request.body.json();
+		db.exec('INSERT INTO users (name, age) VALUES (?,?)', name, age);
+		const id = db.lastInsertRowId;
+		context.response.body = { id, name, age };
+	});
+
+	router.get('/users/:id', (context) => {
+		const user = db.prepare('SELECT * FROM users WHERE id = ?').get(context.params.id);
+		context.response.body = user;
+	});
+
+	router.put('/users/:id', async (context) => {
+		const { name, age } = await context.request.body.json();
+		db.prepare('UPDATE users SET name=?, age=? WHERE id = ?').run(name, age, context.params.id);
+		context.response.body = { message: 'user updated successfully' };
+	});
+
+	router.delete('/users/:id', (context) => {
+		db.prepare('DELETE FROM users WHERE id = ?').run(context.params.id);
+		context.response.body = { message: 'user deleted successfully' };
+	});
 
 	router.get('/ping', (context) => {
 		context.response.body = 'pong';
@@ -54,32 +85,6 @@ export function registerRouter(): AppRouter {
 			context.response.body = false;
 		}
 	});
-
-	// router.delete('/people/:id', async (context) => {
-	// 	const person = await prisma.people.delete({ where: { id: Number(context.params.id) } });
-	// 	context.response.status = 300;
-	// 	context.response.body = { messsage: `person ${person.id} removed successfully`, status: 300 };
-	// });
-
-	// router.get('/people', async (context) => {
-	// 	context.response.status = 300;
-	// 	context.response.body = await prisma.people.findMany();
-	// });
-
-	// router.post('/people', async (context) => {
-	// 	const { name, age } = await context.request.body.json();
-	// 	const person = await prisma.people.create({ data: { age, name } });
-
-	// 	context.response.status = 201;
-	// 	context.response.body = person;
-	// });
-
-	// router.put('/people/:id', async (context) => {
-	// 	const { name, age } = await context.request.body.json();
-	// 	const person = await prisma.people.update({ where: { id: Number(context.params.id) }, data: { name, age } });
-	// 	context.response.status = 300;
-	// 	context.response.body = { message: `person ${person.id} successfuly updated!`, status: 300 };
-	// });
 
 	router.get('/', (context) => {
 		context.response.status = 300;
