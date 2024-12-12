@@ -9,11 +9,13 @@
 		"test:integration": "deno test --allow-net --filter=integration"
 	},
 	"imports": {
+		"@drizzle-team/brocli": "npm:@drizzle-team/brocli@^0.11.0",
+		"drizzle-kit": "npm:drizzle-kit@^0.30.0",
+		"drizzle-orm": "npm:drizzle-orm@^0.38.0",
+
 		"oak": "jsr:@oak/oak",
 		"oak/commons": "jsr:@oak/commons",
-		"@prisma/client": "npm:@prisma/client",
 		"@db/sqlite": "jsr:@db/sqlite",
-		"prisma": "npm:prisma",
 		"djwt": "jsr:@zaubrik/djwt",
 		"@std/fmt": "jsr:@std/fmt",
 		"@std/datetime": "jsr:@std/datetime",
@@ -28,7 +30,10 @@
 		"useTabs": true,
 		"singleQuote": true,
 		"semiColons": true,
-		"lineWidth": 300
-	},
-	"nodeModulesDir": "auto"
+		"lineWidth": 300,
+		"exclude": [
+			"drizzle",
+			"node_modules"
+		]
+	}
 }

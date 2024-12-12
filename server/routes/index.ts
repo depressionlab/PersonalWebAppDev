@@ -1,7 +1,6 @@
 import { Router } from 'oak/router';
 import { AppRouter, ArraysData } from '../utils/types.ts';
 import { Database } from '@db/sqlite';
-// import { prisma } from '../../prisma/client.ts';
 
 export function registerRouter(): AppRouter {
 	const router: AppRouter = new Router();
